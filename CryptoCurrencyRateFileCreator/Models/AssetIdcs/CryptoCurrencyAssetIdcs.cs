@@ -10,6 +10,7 @@
         public const string XRP = "XRP";
         public const string ATOM = "ATOM";
         public const string XLM = "XLM";
+        public const string MATIC = "MATIC";
         public const string BNB = "BNB";
     }
 }
