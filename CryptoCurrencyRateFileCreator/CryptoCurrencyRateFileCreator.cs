@@ -35,8 +35,9 @@ namespace GetCryptoCurrenciesRates
 
         public static void GetCryptoCurrencyRateByAssetIdAndSaveToFile(AppSettingsModel appSettingsModel)
         {
-            var firstMachineSettings = appSettingsModel.MachineSettings[0];
-            var secondMachineSettings = appSettingsModel.MachineSettings[1];
+            var KAMILZAZULAMachineSettings = appSettingsModel.MachineSettings[0];
+            var DEVKC08MachineSettings = appSettingsModel.MachineSettings[1];
+            var STACJONARNY_KAMMachineSettings = appSettingsModel.MachineSettings[2];
 
             var cryptoCurrencyAssetIdcs = typeof(CryptoCurrencyAssetIdcs)
                 .GetFields(BindingFlags.Public | BindingFlags.Static)
@@ -55,17 +56,25 @@ namespace GetCryptoCurrenciesRates
 
                     Console.WriteLine(deserializedContent[0].asset_id + ": " + deserializedContent[0].price_usd);
 
-                    if (Environment.MachineName == firstMachineSettings.MachineName)
+                    if (Environment.MachineName == KAMILZAZULAMachineSettings.MachineName)
                     {
-                        var filePath = Path.GetFullPath(firstMachineSettings.Path + assetId + ".txt");
+                        var filePath = Path.GetFullPath(KAMILZAZULAMachineSettings.Path + assetId + ".txt");
                         using (StreamWriter sw = File.CreateText(filePath))
                         {
                             sw.WriteLine(deserializedContent[0].price_usd);
                         }
                     }
-                    else if (Environment.MachineName == secondMachineSettings.MachineName)
+                    else if (Environment.MachineName == DEVKC08MachineSettings.MachineName)
                     {
-                        var filePath = Path.GetFullPath(secondMachineSettings.Path + assetId + ".txt");
+                        var filePath = Path.GetFullPath(DEVKC08MachineSettings.Path + assetId + ".txt");
+                        using (StreamWriter sw = File.CreateText(filePath))
+                        {
+                            sw.WriteLine(deserializedContent[0].price_usd);
+                        }
+                    }
+                    else if (Environment.MachineName == STACJONARNY_KAMMachineSettings.MachineName)
+                    {
+                        var filePath = Path.GetFullPath(STACJONARNY_KAMMachineSettings.Path + assetId + ".txt");
                         using (StreamWriter sw = File.CreateText(filePath))
                         {
                             sw.WriteLine(deserializedContent[0].price_usd);
@@ -81,8 +90,9 @@ namespace GetCryptoCurrenciesRates
 
         public static void GetCurrencyRateByAssetIdAndSaveToFile(AppSettingsModel appSettingsModel)
         {
-            var firstMachineSettings = appSettingsModel.MachineSettings[0];
-            var secondMachineSettings = appSettingsModel.MachineSettings[1];
+            var KAMILZAZULAMachineSettings = appSettingsModel.MachineSettings[0];
+            var DEVKC08MachineSettings = appSettingsModel.MachineSettings[1];
+            var STACJONARNY_KAMMachineSettings = appSettingsModel.MachineSettings[2];
 
             var currencyAssetIdcs = typeof(CurrencyAssetIdcs)
                 .GetFields(BindingFlags.Public | BindingFlags.Static)
@@ -101,18 +111,27 @@ namespace GetCryptoCurrenciesRates
 
                     Console.WriteLine(deserializedContent.code + ": " + deserializedContent.rates[0].mid);
 
-                    if (Environment.MachineName == firstMachineSettings.MachineName)
+                    if (Environment.MachineName == KAMILZAZULAMachineSettings.MachineName)
                     {
-                        var filePath = Path.GetFullPath(firstMachineSettings.Path + assetId + ".txt");
+                        var filePath = Path.GetFullPath(KAMILZAZULAMachineSettings.Path + assetId + ".txt");
 
                         using (StreamWriter sw = File.CreateText(filePath))
                         {
                             sw.WriteLine(deserializedContent.rates[0].mid);
                         }
                     }
-                    else if (Environment.MachineName == secondMachineSettings.MachineName)
+                    else if (Environment.MachineName == DEVKC08MachineSettings.MachineName)
                     {
-                        var filePath = Path.GetFullPath(secondMachineSettings.Path + assetId + ".txt");
+                        var filePath = Path.GetFullPath(DEVKC08MachineSettings.Path + assetId + ".txt");
+
+                        using (StreamWriter sw = File.CreateText(filePath))
+                        {
+                            sw.WriteLine(deserializedContent.rates[0].mid);
+                        }
+                    }
+                    else if (Environment.MachineName == STACJONARNY_KAMMachineSettings.MachineName)
+                    {
+                        var filePath = Path.GetFullPath(STACJONARNY_KAMMachineSettings.Path + assetId + ".txt");
 
                         using (StreamWriter sw = File.CreateText(filePath))
                         {
